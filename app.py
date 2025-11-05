@@ -6,14 +6,12 @@ from urllib.parse import urlparse
 app = Flask(__name__)
 
 # Parsear URL de conexión MySQL de Railway
-url = urlparse(os.environ.get("DATABASE_URL"))
-
 db = mysql.connector.connect(
-    host=url.hostname,
-    user=url.username,
-    password=url.password,
-    database=url.path[1:],
-    port=url.port
+    host=mysql.railway.internal,
+    user="root",
+    password="IvAfGaslcJqBdymRsQsCsBIllaAhaIxW",
+    database="railways",
+    port=3306
 )
 
 @app.route('/')
@@ -33,3 +31,4 @@ def agregar():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
+
