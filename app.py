@@ -7,12 +7,13 @@ app = Flask(__name__)
 
 # Parsear URL de conexión MySQL de Railway
 db = mysql.connector.connect(
-    host=mysql.railway.internal,
-    user="root",
-    password="IvAfGaslcJqBdymRsQsCsBIllaAhaIxW",
-    database="railways",
-    port=3306
+    host = os.environ["MYSQLHOST"],
+    user = os.environ["MYSQLUSER"],
+    password = os.environ["MYSQLPASSWORD"],
+    database = os.environ["MYSQLDATABASE"],
+    port = os.environ.get("MYSQLPORT", 3306)
 )
+
 
 @app.route('/')
 def index():
@@ -31,4 +32,5 @@ def agregar():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
+
 
